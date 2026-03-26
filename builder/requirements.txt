@@ -1,7 +1,7 @@
 # ---------- PyTorch CUDA 12.1 wheels ----------
 --extra-index-url https://download.pytorch.org/whl/
-torch
-torchaudio
+torch==2.1.2
+torchaudio==2.1.2
 
 # ---------- main libs ----------
 whisperx
