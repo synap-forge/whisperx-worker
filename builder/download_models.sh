@@ -27,24 +27,6 @@ download() {
   cp "$cache_path" "$destination_path"
 }
 
-# ===============================
-# Download Faster Whisper Model
-# ===============================
-faster_whisper_model_dir="${MODELS_DIR}/faster-whisper-large-v3"
-mkdir -p "$faster_whisper_model_dir"
-
-download "https://huggingface.co/Systran/faster-whisper-large-v3/resolve/main/config.json"              "$faster_whisper_model_dir/config.json"
-download "https://huggingface.co/Systran/faster-whisper-large-v3/resolve/main/model.bin"              "$faster_whisper_model_dir/model.bin"
-download "https://huggingface.co/Systran/faster-whisper-large-v3/resolve/main/preprocessor_config.json" "$faster_whisper_model_dir/preprocessor_config.json"
-download "https://huggingface.co/Systran/faster-whisper-large-v3/resolve/main/tokenizer.json"          "$faster_whisper_model_dir/tokenizer.json"
-download "https://huggingface.co/Systran/faster-whisper-large-v3/resolve/main/vocabulary.json"         "$faster_whisper_model_dir/vocabulary.json"
-
-echo "Faster Whisper model downloaded."
-
-# ===================================
-# VAD and wav2vec2 are Docker-handled
-# ===================================
-
 # ===================================
 # Python block: Hugging Face downloads using secret
 # ===================================
@@ -66,6 +48,10 @@ try:
 except Exception as e:
     print('No secret file found, falling back to environment variable:', e)
     hf_token = os.environ.get('HF_TOKEN')
+
+# Download Faster Whisper large-v3 model
+snapshot_download(repo_id='Systran/faster-whisper-large-v3', local_dir='/models/faster-whisper-large-v3')
+print('Faster Whisper model downloaded.')
 
 # Download SpeechBrain speaker recognition model
 snapshot_download(repo_id='speechbrain/spkrec-ecapa-voxceleb')
