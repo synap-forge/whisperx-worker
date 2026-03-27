@@ -2,8 +2,8 @@
     {
         "hardwareConfig": {
             "endpointConfig": {
-                "gpuIds": "AMPERE_16",
-                "name": "16GB GPU"
+                "gpuIds": "AMPERE_16,AMPERE_24,ADA_24",
+                "name": "16-24GB GPU"
             }
         },
         "input": {

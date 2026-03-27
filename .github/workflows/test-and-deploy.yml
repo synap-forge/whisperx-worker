@@ -30,4 +30,4 @@ jobs:
                   image-tag: 'aminnasiri/whisperx-worker:${{ github.sha }}'
                   runpod-api-key: ${{ secrets.RUNPOD_API_KEY }} # Add your API key to a GitHub secret
                   test-filename: .github/tests.json
-                  request-timeout: 300
+                  request-timeout: 600
