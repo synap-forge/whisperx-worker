@@ -12,7 +12,7 @@ ctranslate2                  # used by whisperx
 sentencepiece
 # ---------- utilities ----------
 pydub
-numpy                        # CUDA 12.1 compatible
+numpy<2                      # np.NaN removed in NumPy 2.0, pyannote.audio requires <2
 scipy
 librosa
 huggingface-hub
