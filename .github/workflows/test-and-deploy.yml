@@ -19,7 +19,6 @@ jobs:
             - name: Build and push Docker image
               uses: docker/build-push-action@v6.18.0
               with:
-                  secrets: hf_token=${{ secrets.HF_TOKEN }}
                   context: .
                   push: true
                   tags: 'aminnasiri/whisperx-worker:${{ github.sha }}'

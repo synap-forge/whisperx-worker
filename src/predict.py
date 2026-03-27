@@ -47,7 +47,7 @@ torch.backends.cudnn.allow_tf32 = True
 torch.backends.cuda.matmul.allow_tf32 = True
 compute_type = "float16"  # change to "int8" if low on GPU mem (may reduce accuracy)
 device = "cuda"
-whisper_arch = "./models/faster-whisper-large-v3"
+whisper_arch = "/runpod-volume/models/faster-whisper-large-v3"
 
 
 class Output(BaseModel):

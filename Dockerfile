@@ -8,6 +8,8 @@ ENV SHELL=/bin/bash
 
 WORKDIR /
 
+ENV HF_HOME=/runpod-volume/hf_cache
+
 # Update and upgrade the system packages
 RUN apt-get update -y && \
     apt-get upgrade -y && \
@@ -43,14 +45,10 @@ RUN python3 -m pip install --upgrade pip \
  && python3 -m pip install hf_transfer \ 
  && python3 -m pip install --no-cache-dir -r /builder/requirements.txt
 
-# 6.  local VAD model
+# 6.  local VAD model (small, baked into image)
 COPY models/whisperx-vad-segmentation.bin /root/.cache/torch/whisperx-vad-segmentation.bin
 
-# 7.  builder scripts + model downloader
-COPY builder /builder
-RUN chmod +x /builder/download_models.sh
-RUN --mount=type=secret,id=hf_token /builder/download_models.sh
-# 8.  application code
+# 7.  application code
 COPY src .
 
 CMD ["python3", "-u", "/rp_handler.py"]

@@ -90,6 +90,9 @@ logger.addHandler(file_handler)
 
 
 
+from download_models import ensure_models_downloaded
+ensure_models_downloaded()
+
 MODEL = Predictor()
 MODEL.setup()
 
