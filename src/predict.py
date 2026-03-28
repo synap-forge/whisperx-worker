@@ -316,6 +316,9 @@ def align(audio, result, debug, custom_align_model=None):
     start_time = time.time_ns() / 1e6
 
     model_a, metadata = whisperx.load_align_model(language_code=result["language"], device=device, model_name=custom_align_model)
+    if model_a is None:
+        logger.warning(f"Alignment model for language '{result['language']}' could not be loaded; skipping alignment.")
+        return result
     result = whisperx.align(result["segments"], model_a, metadata, audio, device,
                             return_char_alignments=False)
 
