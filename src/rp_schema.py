@@ -1,7 +1,8 @@
 INPUT_VALIDATIONS = {
     'audio_file': {
         'type': str,
-        'required': True
+        'required': False,   # ← change from True to False
+        'default': None
     },
     'language': {
         'type': str,
