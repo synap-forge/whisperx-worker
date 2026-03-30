@@ -166,13 +166,15 @@ def run(job):
     try:
         audio_b64 = job_input.get("audio_base64")
         audio_fname = job_input.get("audio_filename")
+        audio_url = job_input.get("audio_file")
         if audio_b64:
             audio_file_path = _write_base64_audio(job_id, audio_b64, audio_fname)
             logger.debug(f"Audio received as base64 → {audio_file_path}")
-        else:
-            audio_file_path = download_files_from_urls(job_id,
-                                                       [job_input["audio_file"]])[0]
+        elif audio_url:
+            audio_file_path = download_files_from_urls(job_id, [audio_url])[0]
             logger.debug(f"Audio downloaded → {audio_file_path}")
+        else:
+            return {"error": "audio acquisition: must provide either audio_file or audio_base64"}
     except Exception as e:
         logger.error("Audio acquisition failed", exc_info=True)
         return {"error": f"audio acquisition: {e}"}
