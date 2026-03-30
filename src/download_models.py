@@ -13,6 +13,16 @@ def ensure_models_downloaded():
 
     os.makedirs(VOLUME_MODELS_DIR, exist_ok=True)
 
+    # Log volume state for debugging
+    model_bin = os.path.join(FASTER_WHISPER_DIR, "model.bin")
+    logger.info(f"Volume check — dir exists: {os.path.isdir(FASTER_WHISPER_DIR)}, model.bin exists: {os.path.exists(model_bin)}, is symlink: {os.path.islink(model_bin)}")
+    if os.path.isdir(FASTER_WHISPER_DIR):
+        try:
+            files = os.listdir(FASTER_WHISPER_DIR)
+            logger.info(f"Files in {FASTER_WHISPER_DIR}: {files}")
+        except Exception as e:
+            logger.warning(f"Could not list {FASTER_WHISPER_DIR}: {e}")
+
     # Faster Whisper large-v3
     if not os.path.exists(os.path.join(FASTER_WHISPER_DIR, "model.bin")):
         logger.info("Downloading faster-whisper-large-v3 to network volume...")

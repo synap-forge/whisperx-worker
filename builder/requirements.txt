@@ -5,7 +5,7 @@ torchaudio==2.4.0
 
 # ---------- main libs ----------
 whisperx
-pyannote.audio               # embedded/diarization
+pyannote.audio>=3.3.0        # embedded/diarization (3.3+ uses token= not use_auth_token=)
 speechbrain                 # ECAPA embedding that whisperx uses
 ctranslate2>=4.0.0           # 4.x targets CUDA 12, includes sm_89/sm_90 kernels
 # ---------- speechbrain dependencies ----------
@@ -15,7 +15,7 @@ pydub
 numpy<2                      # np.NaN removed in NumPy 2.0, pyannote.audio requires <2
 scipy
 librosa
-huggingface-hub
+huggingface-hub>=0.23.0
 runpod
 cog
 speechbrain
