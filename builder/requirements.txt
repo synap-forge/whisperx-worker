@@ -15,7 +15,7 @@ pydub
 numpy<2                      # np.NaN removed in NumPy 2.0, pyannote.audio requires <2
 scipy
 librosa
-huggingface-hub>=0.23.0
+huggingface-hub>=0.23.0,<0.30.0
 runpod
 cog
 speechbrain
