@@ -3,7 +3,16 @@
 import os, tempfile, requests, numpy as np, torch, librosa
 from pyannote.audio import Inference
 
-_DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+def _safe_cuda():
+    if not torch.cuda.is_available():
+        return False
+    try:
+        torch.cuda.init()
+        return True
+    except RuntimeError:
+        return False
+
+_DEVICE = torch.device("cuda" if _safe_cuda() else "cpu")
 _EMBED  = Inference(
     "pyannote/embedding",
     device=_DEVICE,

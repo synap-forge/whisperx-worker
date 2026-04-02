@@ -7,7 +7,7 @@ torchaudio==2.4.0
 whisperx
 pyannote.audio>=3.3.0        # embedded/diarization (3.3+ uses token= not use_auth_token=)
 speechbrain                 # ECAPA embedding that whisperx uses
-ctranslate2>=4.0.0           # 4.x targets CUDA 12, includes sm_89/sm_90 kernels
+ctranslate2==4.3.1           # pinned: 4.3.1 has verified sm_75–sm_90 CUDA 12 kernels
 # ---------- speechbrain dependencies ----------
 sentencepiece
 # ---------- utilities ----------

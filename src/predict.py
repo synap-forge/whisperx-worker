@@ -45,7 +45,7 @@ logger.addHandler(file_handler)
 
 torch.backends.cudnn.allow_tf32 = True
 torch.backends.cuda.matmul.allow_tf32 = True
-compute_type = "float16"  # change to "int8" if low on GPU mem (may reduce accuracy)
+compute_type = "int8_float16"  # broader GPU arch support than float16; near-identical accuracy
 device = "cuda"
 whisper_arch = "/runpod-volume/models/faster-whisper-large-v3"
 
