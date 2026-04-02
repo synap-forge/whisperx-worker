@@ -13,6 +13,7 @@ import math
 import os
 import shutil
 import whisperx
+from whisperx.diarize import DiarizationPipeline
 import tempfile
 import time
 import torch
@@ -336,8 +337,8 @@ def align(audio, result, debug, custom_align_model=None):
 def diarize(audio, result, debug, huggingface_access_token, min_speakers, max_speakers):
     start_time = time.time_ns() / 1e6
 
-    diarize_model = whisperx.DiarizationPipeline(model_name='pyannote/speaker-diarization@2.1',
-                                                 use_auth_token=huggingface_access_token, device=device)
+    diarize_model = DiarizationPipeline(model_name='pyannote/speaker-diarization-community-1',
+                                                 token=huggingface_access_token, device=device)
     diarize_segments = diarize_model(audio, min_speakers=min_speakers, max_speakers=max_speakers)
 
     result = whisperx.assign_word_speakers(diarize_segments, result)
